@@ -37,6 +37,14 @@ def main():
         anchor='w',
         text=f"score: {score}"
     )
+
+    # Animation loop - player
+    while True:
+        # update the world
+        canvas.move(player, SIZE, 0)
+
+        # sleep
+        time.sleep(DELAY)
         
 
 if __name__ == '__main__':
