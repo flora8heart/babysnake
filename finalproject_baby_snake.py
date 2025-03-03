@@ -29,6 +29,14 @@ def main():
         360 + SIZE,
         "salmon"
     )
+
+    score = 0
+    score_text = canvas.create_text(
+        10,
+        380,
+        anchor='w',
+        text=f"score: {score}"
+    )
         
 
 if __name__ == '__main__':
