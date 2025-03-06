@@ -59,7 +59,6 @@ def main():
             canvas.move(player, 0, SIZE)
 
         key = canvas.get_last_key_press()
-
         if key == "ArrowLeft":
             print("left arrow pressed!")
             cur_direction = "left"
