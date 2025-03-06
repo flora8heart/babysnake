@@ -48,7 +48,7 @@ def main():
         )
 
         # Set up key press
-        print(f"current direction: {cur_direction}")
+        # print(f"current direction: {cur_direction}")
         if cur_direction == "right":
             canvas.move(player, SIZE, 0)
         elif cur_direction == "left":
@@ -79,6 +79,13 @@ def main():
         player_x = canvas.get_left_x(player)
         player_y = canvas.get_top_y(player)
         if player_x > CANVAS_WIDTH or player_x < 0 or player_y > CANVAS_HEIGHT or player_y < 0:
+            game_over_text = canvas.create_text(
+                150,
+                200,
+                # anchor='w',
+                font_size=20,
+                text="GAME OVER!"
+            )
             break
 
         # Check goal and player collision - moving the goal
@@ -88,8 +95,8 @@ def main():
             print("collision!")
             score += 1
 
-            rand_multiplier = random.randint(0,
-                                             CANVAS_WIDTH / SIZE) * 20  # so that goal is not out of canvas & multiply by 20 to ensure numbers are always the multiple of 20
+            rand_multiplier = random.randint(0, ((
+                                                             CANVAS_WIDTH - SIZE) / SIZE)) * 20  # so that goal is not out of canvas & multiply by 20 to ensure numbers are always the multiple of 20
             print(f"rand_multipler: {rand_multiplier}")
 
             canvas.delete(goal)
