@@ -78,9 +78,7 @@ def main():
         # check canvas collision and ends the game
         player_x = canvas.get_left_x(player)
         player_y = canvas.get_top_y(player)
-        if player_x > CANVAS_WIDTH or player_x < 0:
-            break
-        if player_y > CANVAS_HEIGHT or player_y < 0:
+        if player_x > CANVAS_WIDTH or player_x < 0 or player_y > CANVAS_HEIGHT or player_y < 0:
             break
 
         # Check goal and player collision - moving the goal
