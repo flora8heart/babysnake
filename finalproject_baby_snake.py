@@ -38,6 +38,7 @@ def main():
     while True:
         # update the world
 
+        # update score
         score_text = canvas.create_text(
             10,
             380,
@@ -46,6 +47,7 @@ def main():
             text=f"score: {score}"
         )
 
+        # Set up key press
         print(f"current direction: {cur_direction}")
         if cur_direction == "right":
             canvas.move(player, SIZE, 0)
@@ -56,7 +58,6 @@ def main():
         elif cur_direction == "down":
             canvas.move(player, 0, SIZE)
 
-        # Set up key press
         key = canvas.get_last_key_press()
 
         if key == "ArrowLeft":
