@@ -84,20 +84,9 @@ def main():
             break
 
         # Check goal and player collision - moving the goal
-        left_x = player_x
-        top_y = player_y
-        right_x = left_x + SIZE
-        bottom_y = top_y + SIZE
-
-        player_collision = canvas.find_overlapping(
-            left_x,
-            top_y,
-            right_x,
-            bottom_y
-        )
-        # print(player_collision)
-        # print(len(player_collision))
-        if len(player_collision) == 2:
+        goal_x = canvas.get_left_x(goal)
+        goal_y = canvas.get_top_y(goal)
+        if player_x == goal_x and player_y == goal_y:
             print("collision!")
             score += 1
 
