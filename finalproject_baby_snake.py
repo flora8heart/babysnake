@@ -32,18 +32,20 @@ def main():
     )
 
     score = 0
-    score_text = canvas.create_text(
-        10,
-        380,
-        anchor='w',
-        font_size=20,
-        text=f"score: {score}"
-    )
 
     # Animation loop - player
     cur_direction = "right"
     while True:
         # update the world
+
+        score_text = canvas.create_text(
+            10,
+            380,
+            anchor='w',
+            font_size=20,
+            text=f"score: {score}"
+        )
+
         print(f"current direction: {cur_direction}")
         if cur_direction == "right":
             canvas.move(player, SIZE, 0)
@@ -80,6 +82,40 @@ def main():
             break
         if player_y > CANVAS_HEIGHT or player_y < 0:
             break
+
+        # Check goal and player collision - moving the goal
+        left_x = player_x
+        top_y = player_y
+        right_x = left_x + SIZE
+        bottom_y = top_y + SIZE
+
+        player_collision = canvas.find_overlapping(
+            left_x,
+            top_y,
+            right_x,
+            bottom_y
+        )
+        # print(player_collision)
+        # print(len(player_collision))
+        if len(player_collision) == 2:
+            print("collision!")
+            score += 1
+
+            rand_multiplier = random.randint(0,
+                                             CANVAS_WIDTH / SIZE) * 20  # so that goal is not out of canvas & multiply by 20 to ensure numbers are always the multiple of 20
+            print(f"rand_multipler: {rand_multiplier}")
+
+            canvas.delete(goal)
+
+            goal = canvas.create_rectangle(
+                rand_multiplier,
+                rand_multiplier,
+                rand_multiplier + SIZE,
+                rand_multiplier + SIZE,
+                "salmon"
+            )
+
+        canvas.delete(score_text)  # clear score before redrawn in next loop
 
 
 if __name__ == '__main__':
